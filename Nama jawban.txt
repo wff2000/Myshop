@@ -1,0 +1,65 @@
+Soal 1 Membuat Database
+CREATE DATABASE MY_SHOP;
+
+Soal 2 Membuat Table di Dalam Database
+CREATE TABLE Usersss (
+Id INT PRIMARY KEY AUTO_INCREMENT ,
+Namee VARCHAR (255),
+Email VARCHAR (255) unique,
+Password VARCHAR (255)
+);
+
+CREATE TABLE Categoriesss (
+Id INT PRIMARY KEY AUTO_INCREMENT,
+Namee VARCHAR (255)
+);	
+
+CREATE TABLE Itemsss(
+Id INT PRIMARY KEY AUTO_INCREMENT,
+Namee VARCHAR (255),
+Descriptionn VARCHAR (255),
+Price INT ,
+Stock INT,
+Category_Id INT FOREIGN KEY REFERENCES Categoriesss (Id)
+);
+
+Soal 3 Memasukkan Data pada Table
+INSERT INTO Usersss (Namee,Email,Password)
+VALUES 
+('John Doe','john@doe.com','john123'),
+('Jane Doe','jane@doe.com','jenita123');
+
+INSERT INTO Categoriesss(Namee)
+VALUES
+('gadget'),
+('cloth'),
+('men'),
+('women'),
+('branded');
+
+INSERT INTO Itemsss(Namee,Descriptionn,Price,Stock,Category_Id)
+VALUES 
+('summsang','hape keren dari merek sumsang' ,4000000, 100, 1),
+('Uniklooh','baju keren dari brand ternama' ,500000, 50, 2),
+('IMHO Watch','jam tangan anak yang jujur banget' ,2000000, 10, 1);
+
+Soal 4 Mengambil Data dari Database
+a. Mengambil data users
+SELECT Usersss.Id,Usersss.Namee,Usersss.Email
+FROM Usersss;
+
+b. Mengambil data items
+SELECT Itemsss.Namee
+FROM Itemsss
+WHERE Itemsss.Namee LIKE 'sumsang';
+
+c. Menampilkan data items join dengan kategori
+SELECT Itemsss.Namee,Itemsss.Descriptionn,Itemsss.Price,Itemsss.Stock,Itemsss.Category_Id
+FROM Itemsss
+INNER JOIN Categoriesss ON Categoriesss.Namee = Itemsss.Namee;
+
+Soal 5 Mengubah Data dari Database
+UPDATE Itemsss
+SET Price = 2500000
+WHERE Price = 4000000;
+
